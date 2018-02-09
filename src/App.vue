@@ -1,19 +1,27 @@
 <template>
-  <div id="app">
-    <Nav/>
+  <div id="app" v-bind:class="[displayCart ? 'fix-view' : '']">
+    <Cart v-on:closeCart="e => this.displayCart = e" v-bind:displayCart="displayCart" />
+    <Nav v-on:displayCart="e => this.displayCart = e" />
     <Products class="main-component"/>
   </div>
 </template>
 
 <script>
-import Products from "./components/products.vue";
-import Nav from "./components/nav.vue";
+import Cart from "./components/cart.component.vue";
+import Nav from "./components/nav.component.vue";
+import Products from "./components/products.component.vue";
 
 export default {
   name: "app",
   components: {
     Products,
-    Nav
+    Nav,
+    Cart
+  },
+  data: () => {
+    return {
+      displayCart: false
+    };
   }
 };
 </script>
@@ -25,14 +33,28 @@ body {
   margin: 0;
   min-height: 100vh;
 }
-
+a,
+p {
+  margin: 1rem 0;
+  display: block;
+}
+a:hover {
+  cursor: pointer;
+}
 button {
-  border: 1px solid #2c3e50;
+  border: 1px solid rgba(44, 62, 80, 0.5);
   border-radius: 6px;
   font-size: 1.5rem;
   font-weight: 200;
   width: 50%;
   padding: 0.5rem;
+}
+button:hover {
+  cursor: pointer;
+}
+.fix-view {
+  position: relative;
+  overflow: hidden;
 }
 
 #app {
@@ -46,13 +68,8 @@ button {
   min-height: 100vh;
   flex-direction: column;
 }
-#app a,
-#app p {
-  margin: 1rem 0;
-  display: block;
-}
 #app .component {
-  margin: auto;
+  margin: 0 auto;
   max-width: 1200px;
   width: 100%;
 }

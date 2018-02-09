@@ -9,10 +9,10 @@
           <a>Shop</a>
         </li>
         <li class="nav-link-item nav-cart">
-          <p>
+          <a v-on:click="displayCart()">
             Your Cart
             <span>{{counter}}</span>
-          </p> 
+          </a> 
         </li>
       </ul>
     </div>
@@ -24,7 +24,10 @@ export default {
   name: "Nav",
   data: () => {
     return {
-      counter: 0
+      counter: 0,
+      displayCart: function() {
+        this.$emit("displayCart", true);
+      }
     };
   }
 };

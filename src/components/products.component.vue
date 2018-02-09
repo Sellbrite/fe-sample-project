@@ -2,7 +2,10 @@
   <main class="component">
     <h1 class="products-header">Shop Our Featured Collection</h1>
     <ul class="products-list">
-      <ProductDetail v-for="product in products" v-bind:productDetail="product" />
+      <ProductDetail 
+        v-for="product in products" 
+        v-bind:key="product.id"
+        v-bind:productDetail="product" />
     </ul>
     
   </main>
@@ -10,7 +13,8 @@
 
 <script>
 import { getProducts } from "./../services";
-import ProductDetail from "./productDetail.vue";
+import ProductDetail from "./productDetail.component.vue";
+
 export default {
   name: "Products",
   data: () => {
