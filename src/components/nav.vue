@@ -2,13 +2,13 @@
   <nav>
     <div class="component">
       <ul class="nav-link-list">
-        <li class="nav-link-item">
+        <li class="nav-link-item nav-logo">
           <p>Cart.ly</p>
         </li>
         <li class="nav-link-item">
           <a>Shop</a>
         </li>
-        <li class="nav-link-item floated-list-item">
+        <li class="nav-link-item nav-cart">
           <p>
             Your Cart
             <span>{{counter}}</span>
@@ -48,7 +48,7 @@ a {
 .nav-link-item {
   margin: 0 0.5rem;
 }
-.nav-link-item.floated-list-item {
+.nav-link-item.nav-cart {
   margin-left: auto;
 }
 </style>

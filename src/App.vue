@@ -20,9 +20,10 @@ export default {
 
 <style>
 body {
+  background-color: #fefefe;
+  flex-direction: column;
   margin: 0;
   min-height: 100vh;
-  flex-direction: column;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -41,8 +42,9 @@ body {
   display: block;
 }
 #app .component {
-  max-width: 1200px;
   margin: auto;
+  max-width: 1200px;
+  width: 100%;
 }
 #app .main-component {
   flex: 1;
