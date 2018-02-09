@@ -42,7 +42,7 @@ a {
   display: flex;
   list-style-type: none;
   margin: 0;
-  padding: 0 2rem;
+  padding: 0;
 }
 
 .nav-link-item {

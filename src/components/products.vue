@@ -20,7 +20,21 @@ export default {
   },
   mounted() {
     getProducts().then(({ products }) => {
-      this.products = products;
+      this.products = products.map((product, index) => {
+        const { name } = product;
+        const price = `$${product.price / 100}`;
+        const filename = `/assets/images/${product.filename}`;
+        const altname = `${product.name} for ${price}`;
+        const id = index;
+
+        return {
+          filename,
+          name,
+          price,
+          altname,
+          id
+        };
+      });
     });
   },
   components: {

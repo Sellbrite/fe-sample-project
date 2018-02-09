@@ -25,6 +25,16 @@ body {
   margin: 0;
   min-height: 100vh;
 }
+
+button {
+  border: 1px solid #2c3e50;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  font-weight: 200;
+  width: 50%;
+  padding: 0.5rem;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
