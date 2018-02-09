@@ -5,7 +5,7 @@
     <main>
       <div class="component">
         <div v-if="!products.length" class="zero-state">
-          <p>Your cart</p>
+          <h2>Your cart</h2>
           <p>Nothing in your cart,
             <br>
             start shopping.

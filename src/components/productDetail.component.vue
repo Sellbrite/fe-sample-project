@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { addToCart, removeFromCart } from "./../services";
+
 export default {
   name: "ProductDetail",
   props: {
@@ -21,7 +23,7 @@ export default {
   },
   data: () => {
     return {
-      addToCart: product => console.log(product)
+      addToCart: product => addToCart(product)
     };
   }
 };
