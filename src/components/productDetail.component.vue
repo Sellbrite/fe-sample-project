@@ -26,7 +26,7 @@ export default {
   methods: mapActions(["addToCart"]),
   computed: {
     ...mapGetters({
-      cart: "cartProducts",      
+      cart: "cartProducts"
     })
   }
 };
@@ -43,7 +43,7 @@ export default {
   padding: 0 0.5rem;
 }
 .product-detail {
-  width: calc(25% - 2rem);
+  width: calc(100% - 2rem);
   padding: 0.5rem;
   margin: 0 0.5rem 0.5rem;
 }
@@ -64,5 +64,20 @@ export default {
 .product-price {
   font-size: 2rem;
   font-weight: 200;
+}
+
+@media (min-width: 600px) {
+  .product-detail {
+    width: calc(50% - 2rem);
+    padding: 0.5rem;
+    margin: 0 0.5rem 0.5rem;
+  }
+}
+@media (min-width: 1000px) {
+  .product-detail {
+    width: calc(25% - 2rem);
+    padding: 0.5rem;
+    margin: 0 0.5rem 0.5rem;
+  }
 }
 </style>

@@ -46,7 +46,7 @@ button {
   border-radius: 6px;
   font-size: 1.5rem;
   font-weight: 200;
-  width: 50%;
+  width: 95%;
   padding: 0.5rem;
 }
 button:hover {
@@ -84,12 +84,29 @@ button:hover {
   min-height: 100vh;
   flex-direction: column;
 }
-#app .component {
-  margin: 0 auto;
-  max-width: 1200px;
-  width: 100%;
-}
 #app .main-component {
   flex: 1;
+}
+
+.component {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 600px) {
+  button {
+    width: 75%;
+  }
+  .component {
+    max-width: 900px;
+  }
+}
+@media (min-width: 1000px) {
+  button {
+    width: 50%;
+  }
+  .component {
+    max-width: 1200px;
+  }
 }
 </style>

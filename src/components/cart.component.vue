@@ -21,7 +21,7 @@
               <div class="product-total">
                 <h4 class="product-name">{{product.name}}</h4>
                 <p>{{product.quantity}} x ${{product.price}}</p>
-                <p class="product-price">${{product.price * product.quantity}}</p>
+                <p class="product-price">${{roundDecimals(product.price * product.quantity)}}</p>
               </div>
               <div class="product-controls">
                 <div class="product-controls-board">
@@ -42,7 +42,7 @@
         <div class="cart-controls">
           <div class="cart-calculation">
             <p class="cart-calculation-header">Total</p>
-            <p class="cart-calculation-amount">{{`$${total}`}}</p>
+            <p class="cart-calculation-amount">{{`$${roundDecimals(total)}`}}</p>
           </div>
           <button class="shop-cta close-cart" v-on:click="closeCart()">
             <span>back</span>
@@ -62,7 +62,8 @@ export default {
     return {
       closeCart: function() {
         this.$emit("closeCart", false);
-      }
+      },
+      roundDecimals: amount => Math.round(amount * 100) / 100
     };
   },
   props: {
@@ -120,7 +121,7 @@ main {
 }
 
 .shopping-cart {
-  max-width: 35%;
+  max-width: 75%;
   margin: 0 auto;
   border-bottom: 2px solid rgba(44, 62, 80, 0.75);
 }
@@ -168,7 +169,7 @@ main {
 }
 
 .cart-controls {
-  max-width: 35%;
+  max-width: 75%;
   margin: 1rem auto 0;
 }
 .cart-calculation {
@@ -186,5 +187,18 @@ main {
 }
 .close-cart {
   max-width: 25%;
+}
+
+@media (min-width: 600px) {
+  .cart-controls,
+  .shopping-cart {
+    max-width: 50%;
+  }
+}
+@media (min-width: 1000px) {
+  .cart-controls,
+  .shopping-cart {
+    max-width: 40%;
+  }
 }
 </style>
