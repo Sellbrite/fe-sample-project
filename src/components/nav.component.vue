@@ -3,14 +3,17 @@
     <div class="component">
       <ul class="nav-link-list">
         <li class="nav-link-item nav-logo">
-          <p>Cart.ly</p>
+          <p>
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span>Cart.ly</span>
+          </p>
         </li>
         <li class="nav-link-item">
           <a>Shop</a>
         </li>
         <li class="nav-link-item nav-cart">
           <a v-on:click="displayCart()">
-            Your Cart
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span class="cart-counter">{{totalProducts(products)}}</span>
           </a> 
         </li>

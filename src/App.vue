@@ -52,9 +52,25 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.fa {
+  font-size: 1.25rem;
+}
 .fix-view {
   position: relative;
   overflow: hidden;
+}
+.shop-cta {
+  border: 1px solid rgba(26, 0, 217, 0.25);
+  transition: 0.5s ease-in;
+}
+.shop-cta:focus {
+  outline: none;
+  background-color: rgba(26, 0, 217, 1);
+  color: white;
+}
+.shop-cta:hover {
+  border: 1px solid rgba(26, 0, 217, 1);
 }
 
 #app {

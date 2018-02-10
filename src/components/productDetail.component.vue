@@ -5,6 +5,8 @@
       <div class="product-description">
         <p class="product-name">{{productDetail.name}}</p>
         <p class="product-price">${{productDetail.price}}</p>
+      </div>
+      <div class="product-controls">
         <button class="shop-cta" v-on:click="addToCart(productDetail)">
           <span>Add to cart</span>
         </button>
@@ -14,24 +16,25 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "ProductDetail",
   props: {
     productDetail: Object
   },
-  data: () => {
-    return {
-      addToCart: function(product) {
-        this.$emit("addToCart", product);
-      }
-    };
+  methods: mapActions(["addToCart"]),
+  computed: {
+    ...mapGetters({
+      cart: "cartProducts",      
+    })
   }
 };
 </script>
 
 <style scoped>
 .thumbnail {
-  box-shadow: 0px 5px 15px rgba(44, 62, 80, 0.25);
+  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.25);
   border-radius: 5px;
   padding-bottom: 1rem;
   transition: box-shadow 0.25s ease-in;
@@ -45,10 +48,10 @@ export default {
   margin: 0 0.5rem 0.5rem;
 }
 .product-detail:hover .thumbnail {
-  box-shadow: 0px 5px 15px rgba(44, 62, 80, 0.75);
+  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.75);
 }
 .product-detail:hover .shop-cta {
-  border: 1px solid rgba(44, 62, 80, 0.9);
+  border: 1px solid rgba(26, 0, 217, 0.5);
 }
 
 .product-image {
@@ -61,8 +64,5 @@ export default {
 .product-price {
   font-size: 2rem;
   font-weight: 200;
-}
-.shop-cta {
-  transition: border 0.25s ease-in;
 }
 </style>

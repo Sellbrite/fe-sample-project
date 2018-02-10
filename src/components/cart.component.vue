@@ -3,7 +3,7 @@
     <main>
       <div class="component">
         <h2>Your cart</h2>
-        <div v-if="!products.length" class="zero-state">
+        <div v-if="!products.length" class="shopping-cart zero-state">
           <p>Nothing in your cart,
             <br>
             start shopping.
@@ -11,7 +11,10 @@
         </div>
         <div v-if="products.length" class="shopping-cart">
           <ul class="product-list">
-            <li v-for="product in products" v-bind:key="product.id" class="list-item">
+            <li 
+              v-for="product in products"
+              v-bind:key="product.id"
+              class="list-item">
               <div class="product-thumbnail">
                 <img class="product-image" v-bind:src="product.filename">
               </div>
@@ -20,12 +23,28 @@
                 <p>{{product.quantity}} x ${{product.price}}</p>
                 <p class="product-price">${{product.price * product.quantity}}</p>
               </div>
+              <div class="product-controls">
+                <div class="product-controls-board">
+                  <a v-on:click="eliminateProduct(product)">
+                    <i class="fa fa-close"></i>
+                  </a>
+                  <a v-on:click="removeFromCart(product)">
+                    <i class="fa fa-minus"></i>
+                  </a>
+                  <a v-on:click="addToCart(product)">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
         <div class="cart-controls">
-          <p class="cart-total">Total: {{`$${total}`}}</p>
-          <button class="close-cart" v-on:click="closeCart()">
+          <div class="cart-calculation">
+            <p class="cart-calculation-header">Total</p>
+            <p class="cart-calculation-amount">{{`$${total}`}}</p>
+          </div>
+          <button class="shop-cta close-cart" v-on:click="closeCart()">
             <span>back</span>
           </button>
         </div>
@@ -49,6 +68,13 @@ export default {
   props: {
     displayCart: Boolean
   },
+  methods: {
+    ...mapActions({
+      removeFromCart: "removeFromCart",
+      eliminateProduct: "eliminateProduct",
+      addToCart: "addToCart"
+    })
+  },
   computed: {
     ...mapGetters({
       products: "cartProducts",
@@ -60,10 +86,11 @@ export default {
 
 <style scoped>
 section {
+  align-items: center;
   display: flex;
   height: 100%;
+  overflow-y: scroll;
   width: 100%;
-  align-items: center;
 }
 
 main {
@@ -105,6 +132,7 @@ main {
   display: flex;
   flex: 1;
   padding: 0 1rem;
+  position: relative;
 }
 .product-thumbnail {
   flex: 25%;
@@ -120,9 +148,41 @@ main {
   text-align: right;
 }
 
+.product-controls {
+  position: absolute;
+  right: -0.5rem;
+}
+.product-controls-board {
+  display: flex;
+  flex-direction: column;
+}
+.product-controls-board a {
+  align-self: stretch;
+  color: rgba(26, 0, 217, 0.75);
+  flex: 1;
+  margin: 0;
+  transition: color 0.5s ease-inl;
+}
+.product-controls-board a:hover {
+  color: rgba(26, 0, 217, 0.9);
+}
+
 .cart-controls {
   max-width: 35%;
   margin: 1rem auto 0;
+}
+.cart-calculation {
+  display: flex;
+  padding: 0 1rem;
+  font-weight: bold;
+}
+.cart-calculation-header {
+  flex: 1;
+  text-align: left;
+}
+.cart-calculation-amount {
+  flex: 1;
+  text-align: right;
 }
 .close-cart {
   max-width: 25%;

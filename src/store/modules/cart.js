@@ -11,14 +11,16 @@ const getters = {
         name: product.name,
         price: product.price,
         filename: product.filename,
+        inventory: product.inventory,
         quantity,
+        id
       }
     })
   }),
   cartTotalPrice: (state, getters) => {
     return getters.cartProducts
       .map(({ quantity, price }) => ({ quantity, price }))
-      .reduce((acc, currentVal) => (acc + (currentVal.price * currentVal.quantity)).toFixed(2), 0)
+      .reduce((acc, currentVal) => acc + (currentVal.price * currentVal.quantity), 0)
   },
 }
 
@@ -33,6 +35,20 @@ const actions = {
       }
       commit('decrementProductInventory', { id: product.id });
     }
+  },
+  removeFromCart({ state, commit }, product) {
+    const cartItem = state.added.find(({ id }) => product.id === id);
+    if (cartItem) {
+      commit('decrementItemQuantity', cartItem);
+    }
+    if (cartItem.quantity === 0) {
+      commit('removeFromCart', product);
+    }
+  },
+  eliminateProduct({ state, commit }, product) {
+    if (state.added.indexOf(product)) {
+      commit('removeFromCart', product);
+    }
   }
 }
 
@@ -40,9 +56,16 @@ const mutations = {
   addProductToCart(state, { id }) {
     state.added.push({ id, quantity: 1 });
   },
+  removeFromCart(state, product) {
+    state.added.splice(state.added.indexOf(product), 1);
+  },
   incrementItemQuantity(state, { id }) {
     const cartItem = state.added.find(item => item.id === id);
     cartItem.quantity++;
+  },
+  decrementItemQuantity(state, { id }) {
+    const cartItem = state.added.find(item => item.id === id);
+    cartItem.quantity--;
   },
   setCartItems(state, { items }) {
     state.added = items;

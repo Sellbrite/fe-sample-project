@@ -5,10 +5,8 @@
       <ProductDetail 
         v-for="product in products" 
         v-bind:key="product.id"
-        v-on:addToCart="p => addToCart(p)"
         v-bind:productDetail="product" />
     </ul>
-    
   </main>
 </template>
 
@@ -21,7 +19,6 @@ export default {
   computed: mapGetters({
     products: "allProducts"
   }),
-  methods: mapActions(["addToCart"]),
   components: {
     ProductDetail
   },
