@@ -4,7 +4,7 @@
       <img class="product-image" v-bind:src="productDetail.filename" v-bind:alt="productDetail.altname">
       <div class="product-description">
         <p class="product-name">{{productDetail.name}}</p>
-        <p class="product-price">{{productDetail.price}}</p>
+        <p class="product-price">${{productDetail.price}}</p>
         <button class="shop-cta" v-on:click="addToCart(productDetail)">
           <span>Add to cart</span>
         </button>
@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import { addToCart, removeFromCart } from "./../services";
-
 export default {
   name: "ProductDetail",
   props: {
@@ -23,7 +21,9 @@ export default {
   },
   data: () => {
     return {
-      addToCart: product => addToCart(product)
+      addToCart: function(product) {
+        this.$emit("addToCart", product);
+      }
     };
   }
 };

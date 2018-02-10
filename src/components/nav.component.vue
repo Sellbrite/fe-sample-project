@@ -11,7 +11,7 @@
         <li class="nav-link-item nav-cart">
           <a v-on:click="displayCart()">
             Your Cart
-            <span>{{counter}}</span>
+            <span class="cart-counter">{{totalProducts(products)}}</span>
           </a> 
         </li>
       </ul>
@@ -20,15 +20,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Nav",
   data: () => {
     return {
-      counter: 0,
+      totalProducts: products => {
+        return products
+          .map(p => p.quantity)
+          .reduce((acc, currentVal) => acc + currentVal, 0);
+      },
       displayCart: function() {
         this.$emit("displayCart", true);
       }
     };
+  },
+  computed: {
+    ...mapGetters({
+      products: "cartProducts"
+    })
   }
 };
 </script>
@@ -53,5 +64,13 @@ a {
 }
 .nav-link-item.nav-cart {
   margin-left: auto;
+}
+.cart-counter {
+  width: 1.5rem;
+  background-color: white;
+  color: #1a00d9;
+  display: inline-block;
+  border-radius: 50%;
+  height: 1.5rem;
 }
 </style>

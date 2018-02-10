@@ -2,19 +2,19 @@
   <div id="app" v-bind:class="[displayCart ? 'fix-view' : '']">
     <Cart v-on:closeCart="e => this.displayCart = e" v-bind:displayCart="displayCart" />
     <Nav v-on:displayCart="e => this.displayCart = e" />
-    <Products class="main-component"/>
+    <ProductList class="main-component"/>
   </div>
 </template>
 
 <script>
 import Cart from "./components/cart.component.vue";
 import Nav from "./components/nav.component.vue";
-import Products from "./components/products.component.vue";
+import ProductList from "./components/productList.component.vue";
 
 export default {
   name: "app",
   components: {
-    Products,
+    ProductList,
     Nav,
     Cart
   },
