@@ -6,7 +6,7 @@ import cart from './modules/cart';
 import products from './modules/product'
 
 Vue.use(Vuex)
-const debug = process.env.NODE_ENV !== 'pruduction';
+const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
   modules: {
