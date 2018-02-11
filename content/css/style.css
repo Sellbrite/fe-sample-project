@@ -1,0 +1,121 @@
+body {
+    font-family: "The Lato Font";
+}
+
+.go-blur {
+  -webkit-filter: blur(13px);
+  -moz-filter: blur(13px);
+  -o-filter: blur(13px);
+  -ms-filter: blur(13px);
+  filter: blur(13px);
+}
+
+.image-resize {
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+}
+
+/* ------ navbar styling --------- */
+
+.navbar-color {
+    background-color: blue;
+}
+
+.nav-link-style {
+    color:white !important;
+}
+
+.nav-link-style:hover {
+    cursor: pointer;
+    color: #949292 !important;
+}
+
+.navbar-cart {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.item-total-display {
+    border-radius: 4px;
+    background-color: white;
+    color: blue !important;
+    display: flex;
+}
+
+/* product card styling */
+.product-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.product-card:hover{
+    box-shadow: 0 4px 8px 0 rgba(11, 42, 218, 0.644), 0 6px 20px 0 rgba(11, 42, 218, 0.719);
+}
+
+.btn-style {
+    background-color: white;
+    border: 1px solid #999;
+    color: #999
+}
+
+.btn-style:hover {
+    background-color: white;
+    border: 1px solid rgba(11, 42, 218, 0.644);
+    color: rgba(11, 42, 218, 0.644)
+}
+/* ----- shopping cart styling ----- */
+
+.card.shopping-cart-card {
+    position: fixed;
+    top: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 30px;
+}
+
+.gandalf-right-align {
+    text-align: right;
+}
+
+div.cart-item.cart-align-right {
+    text-align: right !important;
+}
+
+.cart-item-size {
+    font-size: larger;
+}
+
+.gandalf-margin {
+    margin-bottom: 10px;
+}
+
+.gandalf-big-margin {
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.gandalf-item-size {
+    height: 40px;
+}
+
+.fa.fa-times-circle.remove-icon {
+    color: rgba(153, 153, 153, 0.411);
+}
+
+h3.gandalf-unbold {
+    font-weight:300;
+}
+
+hr {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 8px auto;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-bottom: 1px solid black;
+ }
