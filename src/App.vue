@@ -2,7 +2,7 @@
   <div id="app" v-bind:class="[displayCart ? 'fix-view' : '']">
     <Cart v-on:closeCart="e => this.displayCart = e" v-bind:displayCart="displayCart" />
     <Nav v-on:displayCart="e => this.displayCart = e" />
-    <ProductList class="main-component"/>
+    <router-view></router-view>
   </div>
 </template>
 

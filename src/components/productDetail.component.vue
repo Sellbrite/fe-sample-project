@@ -1,18 +1,7 @@
 <template>
-  <li class="product-detail">
-    <div class="thumbnail">
-      <img class="product-image" v-bind:src="productDetail.filename" v-bind:alt="productDetail.altname">
-      <div class="product-description">
-        <p class="product-name">{{productDetail.name}}</p>
-        <p class="product-price">${{productDetail.price}}</p>
-      </div>
-      <div class="product-controls">
-        <button class="shop-cta" v-on:click="addToCart(productDetail)">
-          <span>Add to cart</span>
-        </button>
-      </div>
-    </div>
-  </li>
+  <main class="component main-component"> 
+    <p>DETAIL {{ productDetail }} </p>
+  </main>
 </template>
 
 <script>
@@ -21,63 +10,39 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProductDetail",
   props: {
-    productDetail: Object
+    id: Number
   },
-  methods: mapActions(["addToCart"]),
+  methods: {
+    ...mapActions(["addToCart"]),
+    fetchProduct() {
+      this.$store
+        .dispatch("getProductDetail", this.$route.params.id)
+        .then(product => {
+          if (!this.$store.state.products.currentProduct) {
+            this.$router.push("/");
+          }
+        });
+    }
+  },
   computed: {
     ...mapGetters({
-      cart: "cartProducts"
+      productDetail: "getProduct"
     })
+  },
+  watch: {
+    $route: "fetchProduct"
+  },
+  beforeMount: function() {
+    this.fetchProduct();
   }
 };
 </script>
 
 <style scoped>
-.thumbnail {
-  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.25);
-  border-radius: 5px;
-  padding-bottom: 1rem;
-  transition: box-shadow 0.25s ease-in;
-}
-.product-description {
-  padding: 0 0.5rem;
-}
-.product-detail {
-  width: calc(100% - 2rem);
-  padding: 0.5rem;
-  margin: 0 0.5rem 0.5rem;
-}
-.product-detail:hover .thumbnail {
-  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.75);
-}
-.product-detail:hover .shop-cta {
-  border: 1px solid rgba(26, 0, 217, 0.5);
-}
-
-.product-image {
-  max-width: 100%;
-}
-.product-name {
-  font-size: 1.5rem;
-  font-weight: 200;
-}
-.product-price {
-  font-size: 2rem;
-  font-weight: 200;
-}
-
 @media (min-width: 600px) {
-  .product-detail {
-    width: calc(50% - 2rem);
-    padding: 0.5rem;
-    margin: 0 0.5rem 0.5rem;
-  }
+  /*  */
 }
 @media (min-width: 1000px) {
-  .product-detail {
-    width: calc(25% - 2rem);
-    padding: 0.5rem;
-    margin: 0 0.5rem 0.5rem;
-  }
+  /*  */
 }
 </style>
