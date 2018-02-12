@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "filename": "618328744.png",
+      "price": 5127,
+      "name": "Mens Fashion Shirts",
+      "inventory": 51
+    },
+    {
+      "filename": "618842634.png",
+      "price": 5704,
+      "name": "Casual jacket",
+      "inventory": 57
+    },
+    {
+      "filename": "619521178.png",
+      "price": 397,
+      "name": "Mens work shirt",
+      "inventory": 39
+    },
+    {
+      "filename": "623270836.png",
+      "price": 3237,
+      "name": "Running Shoes",
+      "inventory": 32
+    },
+    {
+      "filename": "638571516.png",
+      "price": 5774,
+      "name": "Leather lacket",
+      "inventory": 57
+    },
+    {
+      "filename": "649597850.png",
+      "price": 8745,
+      "name": "Snow Boots",
+      "inventory": 87
+    },
+    {
+      "filename": "656678076.png",
+      "price": 9012,
+      "name": "Mens Fashion Shirts",
+      "inventory": 90
+    },
+    {
+      "filename": "666666252.png",
+      "price": 8883,
+      "name": "Womens white sweater",
+      "inventory": 88
+    },
+    {
+      "filename": "666666466.png",
+      "price": 7767,
+      "name": "Womens red jacket",
+      "inventory": 77
+    },
+    {
+      "filename": "675606742.png",
+      "price": 7057,
+      "name": "Pastel everyday wear",
+      "inventory": 70
+    },
+    {
+      "filename": "806813490.png",
+      "price": 2246,
+      "name": "Longsleeve workout shirt",
+      "inventory": 22
+    }
+  ]
+}
