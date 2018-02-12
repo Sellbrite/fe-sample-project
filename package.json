@@ -8,7 +8,8 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "npm start"
   },
   "repository": {
     "type": "git",
