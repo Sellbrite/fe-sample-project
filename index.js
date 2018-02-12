@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const router = require('./app/routes')
 
 //set port
-const port = 8080
+let port = 8080
 
 // parse application/json
 app.use(bodyParser.json())
