@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "bower install",
     "dev": "nodemon server.js",
-    "start": "npm start"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
