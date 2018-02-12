@@ -52,6 +52,9 @@ button {
 button:hover {
   cursor: pointer;
 }
+button:focus {
+  outline: none;
+}
 
 .fa {
   font-size: 1.25rem;
@@ -65,7 +68,6 @@ button:hover {
   transition: 0.5s ease-in;
 }
 .shop-cta:focus {
-  outline: none;
   background-color: rgba(26, 0, 217, 1);
   color: white;
 }
