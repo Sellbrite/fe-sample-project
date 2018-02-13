@@ -2,6 +2,7 @@
   <li class="product-detail">
     <div class="thumbnail">
       <router-link class="product-details-link" router-link :to="{name: 'ProductDetail', params:{ id: productDetail.id } }">
+        <p class="product-thumbnail-counter" v-if="currentItem(productDetail)">{{currentItem(productDetail).quantity}}</p>
         <img class="product-image" v-bind:src="productDetail.filename" v-bind:alt="productDetail.altname">
         <div class="product-description">
           <p class="product-name">{{productDetail.name}}</p>
@@ -28,7 +29,8 @@ export default {
   methods: mapActions(["addToCart"]),
   computed: {
     ...mapGetters({
-      cart: "cartProducts"
+      cart: "cartProducts",
+      currentItem: "currentItem"
     })
   }
 };
@@ -44,6 +46,8 @@ export default {
   color: #2c3e50;
   text-decoration: none;
   transition: box-shadow 0.25s ease-in;
+  position: relative;
+  z-index: 0;
 }
 .product-description {
   padding: 0 0.5rem;
@@ -70,6 +74,18 @@ export default {
 .product-price {
   font-size: 2rem;
   font-weight: 200;
+}
+
+.product-thumbnail-counter {
+  width: 1.5rem;
+  background-color: #1a00d9;
+  box-shadow: rgba(26, 0, 217, 0.65);
+  color: white;
+  display: inline-block;
+  border-radius: 50%;
+  height: 1.5rem;
+  position: absolute;
+  right: 1rem;
 }
 
 @media (min-width: 600px) {

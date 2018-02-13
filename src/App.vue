@@ -48,6 +48,7 @@ button {
   font-weight: 200;
   width: 95%;
   padding: 0.5rem;
+  background-color: white;
 }
 button:hover {
   cursor: pointer;
@@ -86,7 +87,11 @@ button:focus {
   min-height: 100vh;
   flex-direction: column;
 }
-#app .main-component {
+#app button {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+
+.main-component {
   flex: 1;
 }
 

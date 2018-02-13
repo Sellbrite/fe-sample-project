@@ -1,7 +1,8 @@
 <template>
-  <main class="component main-component"> 
+  <main v-if="productDetail" class="component main-component"> 
     <div class="product-detail">
       <section class="product-thumbnail">
+        <p class="product-thumbnail-counter" v-if="currentItem(productDetail)">{{currentItem(productDetail).quantity}}</p>
         <img :src="productDetail.filename" :alt="productDetail.altname">
       </section>
       <section class="product-description">
@@ -27,23 +28,33 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProductDetail",
   props: {
-    id: Number
+    id: Number | String
   },
   methods: {
-    ...mapActions(["addToCart"]),
+    ...mapActions({
+      addToCart: "addToCart",
+      elminateProduct: "elminateProduct",
+      removeFromCart: "removeFromCart"
+    }),
     fetchProduct() {
       this.$store
-        .dispatch("getProductDetail", this.$route.params.id)
+        .dispatch("getProductDetail", this.parsedId())
         .then(product => {
           if (!this.$store.state.products.currentProduct) {
             this.$router.push("/");
           }
         });
+    },
+    parsedId() {
+      return typeof this.$route.params.id === "string"
+        ? parseInt(this.$route.params.id)
+        : this.$route.params.id;
     }
   },
   computed: {
     ...mapGetters({
-      productDetail: "getProduct"
+      productDetail: "getProduct",
+      currentItem: "currentItem"
     })
   },
   watch: {
@@ -63,6 +74,20 @@ export default {
 .product-detail {
   padding: 2rem 1rem 0;
 }
+.product-thumbnail {
+  position: relative;
+  z-index: -1;
+}
+.product-thumbnail-counter {
+  width: 1.5rem;
+  background-color: #1a00d9;
+  color: white;
+  display: inline-block;
+  border-radius: 50%;
+  height: 1.5rem;
+  position: absolute;
+  right: 1rem;
+}
 @media (min-width: 600px) {
   .product-detail {
     display: flex;
@@ -71,6 +96,10 @@ export default {
   .product-thumbnail {
     flex: 40%;
   }
+.product-thumbnail-counter {
+  right: 3rem;
+}
+  
   .product-description {
     flex: 40%;
     text-align: left;

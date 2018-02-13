@@ -106,11 +106,11 @@ main {
 .visible {
   background-image: linear-gradient(
     to top right,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.85) 50%
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.9) 50%
   );
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.75);
   bottom: 0;
   height: 100%;
   left: 0;
@@ -118,6 +118,7 @@ main {
   right: 0;
   top: 0;
   width: 100%;
+  z-index: 999;
 }
 
 .shopping-cart {
@@ -190,6 +191,16 @@ main {
 }
 
 @media (min-width: 600px) {
+  .visible {
+    background-image: linear-gradient(
+      to top right,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0.85) 50%
+    );
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
   .cart-controls,
   .shopping-cart {
     max-width: 50%;

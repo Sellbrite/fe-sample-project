@@ -25,9 +25,11 @@ const actions = {
   },
   getProductDetail({ commit }, id) {
     return new Promise((resolve, reject) => {
-      getProducts().then(products => {
+      getProducts()
+      .then(products => {
+        commit('setProducts', products)
         commit('setProduct', products.find(p => p.id === id) || null);
-        resolve(products.find(p => p.id === id) || null);
+        return resolve(products.find(p => p.id === id) || null);
       }).catch(e => reject(e));
     })
   }
@@ -42,6 +44,7 @@ const mutations = {
   },
   decrementProductInventory(state, { id }) {
     const product = state.all.find(product => product.id === id);
+    console.log({ product })
     product.inventory--;
   }
 }
