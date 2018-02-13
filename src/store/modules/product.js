@@ -44,7 +44,6 @@ const mutations = {
   },
   decrementProductInventory(state, { id }) {
     const product = state.all.find(product => product.id === id);
-    console.log({ product })
     product.inventory--;
   }
 }
