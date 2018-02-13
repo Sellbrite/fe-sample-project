@@ -21,6 +21,13 @@ const getters = {
       .map(({ quantity, price }) => ({ quantity, price }))
       .reduce((acc, currentVal) => acc + (currentVal.price * currentVal.quantity), 0)
   },
+  currentItem: (state) => (product) => {
+    if (state.added.length) {
+      return state.added.find(p => p.id === product.id) || null;
+    } else {
+      return null;
+    }
+  }
 }
 
 const actions = {
@@ -48,7 +55,7 @@ const actions = {
     if (state.added.indexOf(product)) {
       commit('removeFromCart', product);
     }
-  }
+  },
 }
 
 const mutations = {
@@ -65,9 +72,6 @@ const mutations = {
   decrementItemQuantity(state, { id }) {
     const cartItem = state.added.find(item => item.id === id);
     cartItem.quantity--;
-  },
-  setCartItems(state, { items }) {
-    state.added = items;
   },
 }
 

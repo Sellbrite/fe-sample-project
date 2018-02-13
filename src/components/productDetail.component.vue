@@ -1,18 +1,25 @@
 <template>
-  <li class="product-detail">
-    <div class="thumbnail">
-      <img class="product-image" v-bind:src="productDetail.filename" v-bind:alt="productDetail.altname">
-      <div class="product-description">
-        <p class="product-name">{{productDetail.name}}</p>
+  <main v-if="productDetail" class="component main-component"> 
+    <div class="product-detail">
+      <section class="product-thumbnail">
+        <p class="product-thumbnail-counter" v-if="currentItem(productDetail)">{{currentItem(productDetail).quantity}}</p>
+        <img :src="productDetail.filename" :alt="productDetail.altname">
+      </section>
+      <section class="product-description">
+        <h1 class="product-name">{{productDetail.name}}</h1>
+        <p class="">... product description</p>
         <p class="product-price">${{productDetail.price}}</p>
-      </div>
-      <div class="product-controls">
-        <button class="shop-cta" v-on:click="addToCart(productDetail)">
-          <span>Add to cart</span>
-        </button>
-      </div>
+        <div class="product-controls">
+          <button v-on:click="addToCart(productDetail)" class="shop-cta">
+            <span>add to cart</span>
+          </button>
+          <router-link :to="{name: 'ProductList'}" class="back-home">
+            <span>back</span>
+          </router-link>
+        </div>
+      </section>
     </div>
-  </li>
+  </main>
 </template>
 
 <script>
@@ -21,63 +28,84 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProductDetail",
   props: {
-    productDetail: Object
+    id: Number | String
   },
-  methods: mapActions(["addToCart"]),
+  methods: {
+    ...mapActions({
+      addToCart: "addToCart",
+      elminateProduct: "elminateProduct",
+      removeFromCart: "removeFromCart"
+    }),
+    fetchProduct() {
+      this.$store
+        .dispatch("getProductDetail", this.parsedId())
+        .then(product => {
+          if (!this.$store.state.products.currentProduct) {
+            this.$router.push("/");
+          }
+        });
+    },
+    parsedId() {
+      return typeof this.$route.params.id === "string"
+        ? parseInt(this.$route.params.id)
+        : this.$route.params.id;
+    }
+  },
   computed: {
     ...mapGetters({
-      cart: "cartProducts"
+      productDetail: "getProduct",
+      currentItem: "currentItem"
     })
+  },
+  watch: {
+    $route: "fetchProduct"
+  },
+  beforeMount: function() {
+    this.fetchProduct();
   }
 };
 </script>
 
 <style scoped>
-.thumbnail {
-  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.25);
-  border-radius: 5px;
-  padding-bottom: 1rem;
-  transition: box-shadow 0.25s ease-in;
-}
-.product-description {
-  padding: 0 0.5rem;
+.back-home {
+  text-decoration: none;
+  color: rgba(26, 0, 217, 1);
 }
 .product-detail {
-  width: calc(100% - 2rem);
-  padding: 0.5rem;
-  margin: 0 0.5rem 0.5rem;
+  padding: 2rem 1rem 0;
 }
-.product-detail:hover .thumbnail {
-  box-shadow: 0px 5px 15px rgba(26, 0, 217, 0.75);
+.product-thumbnail {
+  position: relative;
+  z-index: -1;
 }
-.product-detail:hover .shop-cta {
-  border: 1px solid rgba(26, 0, 217, 0.5);
+.product-thumbnail-counter {
+  width: 1.5rem;
+  background-color: #1a00d9;
+  color: white;
+  display: inline-block;
+  border-radius: 50%;
+  height: 1.5rem;
+  position: absolute;
+  right: 1rem;
 }
-
-.product-image {
-  max-width: 100%;
-}
-.product-name {
-  font-size: 1.5rem;
-  font-weight: 200;
-}
-.product-price {
-  font-size: 2rem;
-  font-weight: 200;
-}
-
 @media (min-width: 600px) {
   .product-detail {
-    width: calc(50% - 2rem);
-    padding: 0.5rem;
-    margin: 0 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .product-thumbnail {
+    flex: 40%;
+  }
+.product-thumbnail-counter {
+  right: 3rem;
+}
+  
+  .product-description {
+    flex: 40%;
+    text-align: left;
   }
 }
 @media (min-width: 1000px) {
-  .product-detail {
-    width: calc(25% - 2rem);
-    padding: 0.5rem;
-    margin: 0 0.5rem 0.5rem;
-  }
+  /*  */
 }
 </style>

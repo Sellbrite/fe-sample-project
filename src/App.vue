@@ -2,7 +2,7 @@
   <div id="app" v-bind:class="[displayCart ? 'fix-view' : '']">
     <Cart v-on:closeCart="e => this.displayCart = e" v-bind:displayCart="displayCart" />
     <Nav v-on:displayCart="e => this.displayCart = e" />
-    <ProductList class="main-component"/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -48,9 +48,13 @@ button {
   font-weight: 200;
   width: 95%;
   padding: 0.5rem;
+  background-color: white;
 }
 button:hover {
   cursor: pointer;
+}
+button:focus {
+  outline: none;
 }
 
 .fa {
@@ -65,7 +69,6 @@ button:hover {
   transition: 0.5s ease-in;
 }
 .shop-cta:focus {
-  outline: none;
   background-color: rgba(26, 0, 217, 1);
   color: white;
 }
@@ -84,7 +87,11 @@ button:hover {
   min-height: 100vh;
   flex-direction: column;
 }
-#app .main-component {
+#app button {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+
+.main-component {
   flex: 1;
 }
 

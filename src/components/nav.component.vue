@@ -9,7 +9,7 @@
           </p>
         </li>
         <li class="nav-link-item">
-          <a>Shop</a>
+          <router-link :to="{name: 'ProductList'}">Shop</router-link>
         </li>
         <li class="nav-link-item nav-cart">
           <a v-on:click="displayCart()">
