@@ -6,3 +6,20 @@ This simple project is intended to give us a taste of your personal coding style
 We used the [Lato font](https://fonts.google.com/specimen/Lato "The Lato Font") in the example and have provided stock images for you to work with. The data about the products can be found in the JSON payload file. Feel free to use any modern framework that works for you. In house we like to see React, Angular, jQuery, and plain old JS! There's no need to code up a backend to this but you are welcome to do so if you want to. :) For more guidance [check out our job listing](https://sellbrite.workable.com/jobs/651045)
 
 **Happy coding!**
+
+
+Vue Cart Project Completed | Thank you!
+=======
+This project was completed using Vue.js and Vuex which is Vue's equivalent of Redux
+
+Basic state management allows for addition of products into the cart
+
+## Starting the Project
+> The project will start on port 8080
+
+```bash
+git clone
+cd {project}
+yarn
+yarn serve
+```
