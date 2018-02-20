@@ -1,0 +1,91 @@
+<div ng-class="{ 'go-blur' : ctrl.cartIsLoaded }">
+    <!-- ===================== BEGIN NAVBAR ===================== -->
+    <nav class="navbar navbar-default navbar-color" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-brand-focus nav-link-style" href="">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <strong>Cart.ly</strong>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-style" ui-sref="site">Shop</a>
+                </li>
+            </ul>
+            <div class="pull-right navbar-cart nav-link-style" ng-click="ctrl.showCart()">
+                <div class="col-md-9">Your Cart</div>
+                <div class="col-md-3 item-total-display text-center">{{ctrl.getTotalItems()}}</div>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <!-- ===================== END NAVBAR ===================== -->
+
+    <!-- ===================== BEGIN PRODUCT DISPLAY ===================== -->
+    <div class="container" ng-click="ctrl.hideCart()">
+        <h4 class="text-muted">Shop our featured collection</h4>
+
+        <div ng-repeat="product in ctrl.products">
+            <div class="list-group col-md-3 col-xs-6 text-center">
+                <div class="list-group-item list-group-item-action flex-column align-items-start product-card">
+                    <img src="images/{{product.filename}}" alt="Product Image" class="image-resize" />
+                    <div>
+                        <small class="text-muted">{{product.name}}</small>
+                    </div>
+                    <div>
+                        <small class="text-muted">{{product.price | currency}}</small>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-style" ng-click="ctrl.addItem(product)">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===================== END PRODUCT DISPLAY ===================== -->
+</div>
+<!-- ===================== BEGIN SHOPPING CART DISPLAY ===================== -->
+<div class="container" ng-show="ctrl.cartIsLoaded">
+    <div class="card shopping-cart-card">
+        <div class="text-center">
+            <h3 class="gandalf-margin">Your Cart</h3>
+            <h3 ng-show="ctrl.getTotalItems()==0" class="gandalf-big-margin gandalf-unbold">Nothing in your cart, start shopping.</h3>
+        </div>
+        <div ng-repeat="item in ctrl.currentCart track by $index">
+            <div class="row gandalf-margin">
+                <div class="col-md-5 col-xs-5">
+                    <img src="images/{{item.filename}}" alt="Product Image" class="gandalf-item-size pull-left" />
+                </div>
+                <div class="col-md-7 col-xs-7 cart-item cart-align-right">
+                    <small class="col-md-12">
+                        {{item.name}}
+                        <span>
+                            <a ng-click="ctrl.removeItem($index, item)">
+                                <i class="fa fa-times-circle remove-icon"></i>
+                            </a>
+                        </span>
+                    </small>
+                    <small class="col-md-12 cart-item-size">{{item.price | currency}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="gandalf-margin">
+            <hr>
+        </div>
+        <div class="row">
+            <h3 class="col-md-6">Total</h4>
+            <h3 class="col-md-6 gandalf-right-align">{{ctrl.getTotal() | currency }}</h3>
+        </div>
+        <div class="container text-center" style="margin: 30px;">
+            <button ng-click="ctrl.hideCart()"  class="btn btn-style" >Back</button>
+        </div>
+    </div>
+</div>
+<!-- ===================== END SHOPPING CART DISPLAY ===================== -->

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="client">
+
+<head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <title>Shopping Cart Project</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="#" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+</head>
+
+<body>
+    <!-- VENDOR JS -->
+    <script src="/build/vendor.js"></script>
+    <!-- BUILD JS -->
+    <script src="/build/all.js"></script>
+    
+    <div ui-view="root">
+    </div>
+
+</body>
+
+</html>
